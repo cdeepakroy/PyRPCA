@@ -26,10 +26,10 @@ except:
 
 def _monitor(A, E, D, lmbda=0.1):
     diags = svd(A, min(A.shape))[1]
-    print "|A|_*", np.abs(diags).sum()
-    print "|A|_0", (np.abs(diags) > 1e-6).sum()
-    print "|E|_1", np.abs(D - A).sum()
-    print "|D-A-E|_F", _fro(D - A - E)
+    print "|A|_*", np.abs(diags).sum(), 
+    print "|A|_0", (np.abs(diags) > 1e-6).sum(), 
+    print "|E|_1", np.abs(D - A).sum(), 
+    print "|D-A-E|_F", _fro(D - A - E), 
     return np.abs(diags).sum() + lmbda * np.abs(D - A).sum()
 
 
@@ -145,6 +145,7 @@ def accelerate_proximal_gradient(D, lmbda, maxiter=25000, tol=1e-7,
         E = E_new;
 
         if verbose >= 2:
+            print "Iter %.4d: " % iter, 
             obj.append(_monitor(A, E, D))
         if (not converged) and iter >= maxiter:
             print 'Maximum iterations reached'
